@@ -26,11 +26,20 @@ describe Tribute::Api::User do
       json["provider"].should == "github"
       json["uid"].should == @user.uid.to_s
     end
-    it "does not return other users" do
-      login_as Fabricate(:user)
-      get "/users/#{@user.id}"
-      last_response.status.should == 403
-      last_response.body.should == { error: "Forbidden" }.to_json
+    it "returns self without an id" do
+      login_as @user
+      get "/user"
+      last_response.status.should == 200
+      json = JSON.parse(last_response.body)
+      json["_id"].should == @user.id.to_s
+    end
+    it "returns other users" do
+      user2 = Fabricate(:user)
+      login_as @user
+      get "/users/#{user2.id}"
+      last_response.status.should == 200
+      json = JSON.parse(last_response.body)
+      json["_id"].should == user2.id.to_s
     end
   end
 

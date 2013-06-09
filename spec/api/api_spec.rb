@@ -11,6 +11,7 @@ describe Tribute::API do
     get "/"
     last_response.status.should == 200
     last_response.body.should == { 
+      current_user_url: "http://example.org/user",
       status_url: "http://example.org/status",
       user_url: "http://example.org/users/{user}"
     }.to_json

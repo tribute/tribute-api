@@ -10,6 +10,7 @@ module Tribute
     desc "Hypermedia API root."
     get do
       {
+        current_user_url: url('user'),
         status_url: url('status'),
         user_url: "#{url('users')}/{user}"
       }
