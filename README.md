@@ -14,7 +14,7 @@ rackup
 Session Cookie Secret
 ---------------------
 
-Set ENV['SESSION_COOKIE_SECRET'] to something permanent generated with `SecureRandom.base64`.
+For production, set `ENV['SESSION_COOKIE_SECRET']` to something permanent generated with `SecureRandom.base64`.
 
 Github Authentication
 ---------------------

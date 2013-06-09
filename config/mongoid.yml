@@ -1,0 +1,55 @@
+development:
+  sessions:
+    default:
+      database: tribute_api_development
+      hosts:
+        - localhost:27017
+      options:
+        safe: true
+  options:
+    raise_not_found_error: false
+    use_utc: true
+
+test:
+  sessions:
+    default:
+      database: tribute_api_test
+      hosts:
+        - localhost:27017
+      options:
+        safe: true
+  options:
+    raise_not_found_error: false
+    use_utc: true
+
+staging:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        consistency: :eventual
+        safe: true
+  options:
+    raise_not_found_error: false
+    use_utc: true
+
+production:
+  sessions:
+    default:
+      <% if ENV['MONGOHQ_HOST_LIST'] %>
+      database: <%= ENV['MONGOHQ_DATABASE'] %>
+      username: <%= ENV['MONGOHQ_USER'] %>
+      password: <%= ENV['MONGOHQ_PASSWD'] %>
+      hosts:
+      <% eval(ENV['MONGOHQ_HOST_LIST']).each do |host_and_port| %>
+        - <%= host_and_port.join(':') %>
+      <% end %>
+      <% elsif ENV['MONGOHQ_URL'] %>
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      <% end %>
+      options:
+        consistency: :<%= ENV['MONGODB_CONSISTENCY'] || (!$rails_rake_task ? 'eventual' : 'strong') %>
+        safe: true
+  options:
+    raise_not_found_error: false
+    use_utc: true

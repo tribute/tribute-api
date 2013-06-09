@@ -10,3 +10,9 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.expect_with :rspec
 end
+
+[ "support/*.rb" ].each do |path|
+  Dir["#{File.dirname(__FILE__)}/#{path}"].each do |file|
+    require file
+  end
+end

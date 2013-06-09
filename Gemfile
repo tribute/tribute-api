@@ -7,6 +7,9 @@ gem "newrelic_rpm", "~> 3.5.4.34"
 gem "newrelic-grape", "~> 1.1.0"
 gem "omniauth", "~> 1.1.4"
 gem "omniauth-github", "~> 1.1.0"
+gem "warden", "~> 1.2.1"
+gem "builder", "~> 3.0.4"
+gem "mongoid", "~> 3.1.4"
 
 group :development do
   gem "rake", "~> 10.0.3"
@@ -18,4 +21,7 @@ end
 group :test do
   gem "rspec", "~> 2.13.0"
   gem "rack-test", "~> 0.6.2"
+  gem "fabrication", "~> 2.7.2"
+  gem "faker"
+  gem "shoulda-matchers"
 end

@@ -24,6 +24,11 @@ module Tribute
             use OmniAuth::Strategies::GitHub, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
           end
 
+          use Warden::Manager do |config|
+            config.failure_app = api
+            config.intercept_401 = false
+          end
+
           run api
         end.to_app
       end

@@ -5,6 +5,7 @@ module Tribute
     format :json
         
     helpers Tribute::Helpers::Urls
+    helpers Tribute::Helpers::Auth
     
     desc "Hypermedia API root."
     get do
@@ -13,8 +14,9 @@ module Tribute
       }
     end
     
-    mount Tribute::Status
-    mount Tribute::Auth
+    mount Tribute::Api::Status
+    mount Tribute::Api::Auth
+    mount Tribute::Api::User
 
   end
 end
