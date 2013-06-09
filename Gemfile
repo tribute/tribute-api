@@ -5,6 +5,8 @@ gem "grape", "~> 0.4.1"
 gem "json", "~> 1.7.7"
 gem "newrelic_rpm", "~> 3.5.4.34"
 gem "newrelic-grape", "~> 1.1.0"
+gem "omniauth", "~> 1.1.4"
+gem "omniauth-github", "~> 1.1.0"
 
 group :development do
   gem "rake", "~> 10.0.3"

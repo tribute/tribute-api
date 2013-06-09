@@ -17,4 +17,4 @@ Bundler.require :default, ENV['RACK_ENV']
 end
 
 require 'api'
-
+require 'app'
