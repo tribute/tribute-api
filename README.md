@@ -19,7 +19,7 @@ For production, set `ENV['SESSION_COOKIE_SECRET']` to something permanent genera
 Github Authentication
 ---------------------
 
-Register an application on Github, at https://github.com/settings/applications. 
+Register an application on Github, at https://github.com/settings/applications.
 
 * Main url: *http://localhost:9292*
 * Callback url: *http://localhost:9292/auth/github/callback*
@@ -29,6 +29,11 @@ GITHUB_KEY=... GITHUB_SECRET=... rackup
 ```
 
 Try http://localhost:9292/auth/github.
+
+API
+---
+
+Explore the API using [SwaggerUI](http://petstore.swagger.wordnik.com). Point the explorer to `http://localhost:9292/swagger_doc`.
 
 New Relic
 ---------

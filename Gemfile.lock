@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/dblock/grape-swagger.git
+  revision: 749a1dcd9e6d02a693a2998603127d22215bab9a
+  branch: parameter-type
+  specs:
+    grape-swagger (0.6.0)
+      grape (>= 0.2.0)
+      kramdown
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -7,7 +16,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    backports (3.3.1)
+    backports (3.3.2)
     builder (3.0.4)
     coderay (1.0.8)
     descendants_tracker (0.0.1)
@@ -17,7 +26,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.7)
       multipart-post (~> 1.1)
-    grape (0.4.1)
+    grape (0.5.0)
       activesupport
       builder
       hashie (>= 1.2.0)
@@ -47,6 +56,7 @@ GEM
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kramdown (1.0.2)
     listen (0.7.2)
     lumberjack (1.0.2)
     method_source (0.8.1)
@@ -56,7 +66,7 @@ GEM
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
     moped (1.5.0)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
     newrelic-grape (1.1.0)
@@ -119,7 +129,8 @@ DEPENDENCIES
   builder (~> 3.0.4)
   fabrication (~> 2.7.2)
   faker
-  grape (~> 0.4.1)
+  grape (~> 0.5.0)
+  grape-swagger!
   guard (~> 1.6.1)
   guard-bundler (~> 1.0.0)
   guard-rack (~> 1.2.2)

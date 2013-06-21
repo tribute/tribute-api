@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "rack", "~> 1.4.1"
-gem "grape", "~> 0.4.1"
+gem "grape", "~> 0.5.0"
 gem "json", "~> 1.7.7"
 gem "newrelic_rpm", "~> 3.5.4.34"
 gem "newrelic-grape", "~> 1.1.0"
@@ -10,6 +10,7 @@ gem "omniauth-github", "~> 1.1.0"
 gem "warden", "~> 1.2.1"
 gem "builder", "~> 3.0.4"
 gem "mongoid", "~> 3.1.4"
+gem "grape-swagger", github: "dblock/grape-swagger", branch: "parameter-type"
 
 group :development do
   gem "rake", "~> 10.0.3"
