@@ -8,6 +8,16 @@ describe Tribute::API do
   end
 
   context "CORS" do
+    it "supports options" do
+      options "/", {}, {
+        "HTTP_ORIGIN" => "http://cors.example.com",
+        "HTTP_ACCESS_CONTROL_REQUEST_HEADERS" => "Origin, Accept, Content-Type",
+        "HTTP_ACCESS_CONTROL_REQUEST_METHOD" => "GET"
+      }
+      last_response.status.should == 200
+      last_response.headers['Access-Control-Allow-Origin'].should == "http://cors.example.com"
+      last_response.headers['Access-Control-Expose-Headers'].should == ""
+    end
     it "includes Access-Control-Allow-Origin in the response" do
       get "/", {}, "HTTP_ORIGIN" => "http://cors.example.com"
       last_response.status.should == 200
