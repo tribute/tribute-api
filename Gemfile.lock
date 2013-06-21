@@ -96,6 +96,8 @@ GEM
     rack (1.4.5)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-cors (0.2.8)
+      rack
     rack-mount (0.8.3)
       rack (>= 1.0.0)
     rack-test (0.6.2)
@@ -141,6 +143,7 @@ DEPENDENCIES
   omniauth (~> 1.1.4)
   omniauth-github (~> 1.1.0)
   rack (~> 1.4.1)
+  rack-cors (~> 0.2.8)
   rack-test (~> 0.6.2)
   rake (~> 10.0.3)
   rspec (~> 2.13.0)

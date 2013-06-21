@@ -11,6 +11,7 @@ gem "warden", "~> 1.2.1"
 gem "builder", "~> 3.0.4"
 gem "mongoid", "~> 3.1.4"
 gem "grape-swagger", github: "dblock/grape-swagger", branch: "parameter-type"
+gem "rack-cors", "~> 0.2.8"
 
 group :development do
   gem "rake", "~> 10.0.3"
