@@ -5,7 +5,14 @@ module Tribute
       def instance
         @instance ||= Rack::Builder.new do
           api = Tribute::API
-          
+
+          use Rack::Cors do
+            allow do
+              origins '*'
+              resource '*', headers: :any, methods: :get
+            end
+          end
+
           if ENV['RACK_ENV'] == 'development'
             api.logger.info "Loading NewRelic in developer mode ..."
             require 'new_relic/rack/developer_mode'
