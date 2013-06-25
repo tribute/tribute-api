@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dblock/grape-swagger.git
-  revision: 749a1dcd9e6d02a693a2998603127d22215bab9a
+  revision: aea9485939f1862bee4b1a6eee4e525ec3f9d754
   branch: parameter-type
   specs:
     grape-swagger (0.6.0)
