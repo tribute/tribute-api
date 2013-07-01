@@ -8,9 +8,9 @@ describe Tribute::API do
   end
 
   it "status" do
-    get "/status"
+    get "/status/system"
     last_response.status.should == 200
-    last_response.body.should == { :status => "ok" }.to_json
+    last_response.body.should == { status: { id: "system", message: "ok" }}.to_json
   end
 
 end
