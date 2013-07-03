@@ -1,0 +1,28 @@
+<script>
+function tellEveryone(msg, win) {
+  if(win == undefined) win = window;
+  win.postMessage(msg, '*');
+  if(win.parent != win) tellEveryone(msg, win.parent);
+  if(win.opener) tellEveryone(msg, win.opener);
+}
+
+function uberParent(win) {
+  return win.parent === win ? win : uberParent(win.parent);
+}
+
+function sendPayload(win) {
+  var payload = {
+    'user': '<%= user.id %>',
+    'token': '<%= user.token %>'
+  };
+  uberParent(win).postMessage(payload, 'http://localhost:9293/');
+}
+
+if(window.parent == window) {
+  sendPayload(window.opener);
+  window.close();
+} else {
+  tellEveryone('done');
+  sendPayload(window.parent);
+}
+</script>

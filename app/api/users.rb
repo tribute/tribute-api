@@ -6,9 +6,9 @@ module Tribute
       namespace :users do
 
         desc "Retrieve a user by id."
-        get "/:user_id" do
+        get "/(:user_id)" do
           authenticated_user
-          if params[:user_id] == 'current'
+          if ! params[:user_id] || (params[:user_id] == 'current')
             user = current_user
           else
             user = Tribute::Models::User.find(params[:user_id])
@@ -16,9 +16,9 @@ module Tribute
           end
           {
             user: {
-              id: current_user._id,
-              provider: current_user.provider,
-              uid: current_user.uid
+              id: user._id,
+              provider: user.provider,
+              uid: user.uid
             }
           }
         end

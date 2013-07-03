@@ -11,6 +11,11 @@ module Tribute
 
       validates_presence_of :uid, :provider
       validates_uniqueness_of :uid, scope: :provider
+
+      def token
+        "todo"
+      end
+      
     end
   end
 end

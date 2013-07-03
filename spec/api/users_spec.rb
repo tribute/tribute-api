@@ -14,32 +14,23 @@ describe Tribute::Api::User do
   end
 
   context "with a user" do
-    before do
-      @user = Fabricate(:user)
-    end
+    let(:user) { Fabricate(:user) }
     it "returns self" do
-      login_as @user
-      get "/users/#{@user.id}"
+      login_as user
+      get "/users/#{user.id}"
       last_response.status.should == 200
       json = JSON.parse(last_response.body)
-      json["_id"].should == @user.id.to_s
-      json["provider"].should == "github"
-      json["uid"].should == @user.uid.to_s
-    end
-    it "returns self without an id" do
-      login_as @user
-      get "/user"
-      last_response.status.should == 200
-      json = JSON.parse(last_response.body)
-      json["_id"].should == @user.id.to_s
+      json["user"]["id"].should == user.id.to_s
+      json["user"]["provider"].should == "github"
+      json["user"]["uid"].should == user.uid.to_s
     end
     it "returns other users" do
       user2 = Fabricate(:user)
-      login_as @user
+      login_as user
       get "/users/#{user2.id}"
       last_response.status.should == 200
       json = JSON.parse(last_response.body)
-      json["_id"].should == user2.id.to_s
+      json["user"]["id"].should == user2.id.to_s
     end
   end
 

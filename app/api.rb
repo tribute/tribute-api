@@ -6,6 +6,7 @@ module Tribute
 
     helpers Tribute::Helpers::Urls
     helpers Tribute::Helpers::Auth
+    helpers Tribute::Helpers::Erb
 
     desc "Hypermedia API root."
     get do

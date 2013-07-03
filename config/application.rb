@@ -1,3 +1,5 @@
+require 'erb'
+
 current_dir = File.dirname(__FILE__)
 
 [ 'app', 'app/api', 'app/helpers', 'app/models' ].each do |path|

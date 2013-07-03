@@ -12,19 +12,22 @@ describe Tribute::App do
     last_response.status.should == 200
   end
 
-  it "post /auth/developer/callback" do
-    post "/auth/developer/callback", { name: "username", email: "email" }
-    last_response.status.should == 201
-    last_response.body.should == {
-      provider: "developer",
-      uid: "email",
-      info: {
-        name: "username",
-        email: "email"
-      },
-      credentials: {},
-      extra:{}
-    }.to_json
+  context "logged in" do
+    let(:user) { Fabricate(:user) }
+    before :each do
+      login_as user
+    end
+    it "get /auth/developer/callback/iframe" do
+      get "/auth/developer/callback/iframe"
+      last_response.status.should == 200
+      last_response.body.should include "'user': '#{user.id}'"
+    end
+  end
+
+  it "get /auth/developer/callback" do
+    get "/auth/developer/callback"
+    last_response.status.should == 200
+    last_response.body.should include "window.addEventListener"
   end
 
 end
