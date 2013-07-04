@@ -12,8 +12,8 @@ function uberParent(win) {
 
 function sendPayload(win) {
   var payload = {
-    'user': '<%= user.id %>',
-    'token': '<%= user.token %>'
+    'userId': '<%= user.id %>',
+    'authToken': '<%= user.token %>'
   };
   uberParent(win).postMessage(payload, '<%= redirect_uri %>');
 }

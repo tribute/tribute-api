@@ -1,7 +1,7 @@
 <body onload='document.forms[0].submit()'>
   <form action="<%= redirect_uri %>" method='post'>
-    <input type='hidden' name='token' value='<%= user.token %>'>
-    <input type='hidden' name='user' value='<%= user.id %>'>
+    <input type='hidden' name='authToken' value='<%= user.token %>'>
+    <input type='hidden' name='userId' value='<%= user.id %>'>
     <input type='hidden' name='storage' value='localStorage'>
   </form>
 </body>
