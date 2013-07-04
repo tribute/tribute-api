@@ -14,7 +14,7 @@ module Tribute
     get do
       {
         current_user_url: url('user'),
-        status_url: url('status'),
+        status_url: "#{url('status')}/{scope}",
         user_url: "#{url('users')}/{user}"
       }
     end

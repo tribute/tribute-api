@@ -13,12 +13,24 @@ describe Tribute::App do
     last_response.body.should include "<button type='submit'>Sign In</button>"
   end
 
-  it "get /auth/developer/callback" do
-    expect {
+  context "auth callback" do
+    it "creates a user" do
+      expect {
+        get "/auth/developer/callback?email=uid"
+        last_response.status.should == 200
+      }.to change(Tribute::Models::User, :count).by(1)
+    end
+    it "redirects if redirect_uri is provided" do
       get "/auth/developer/callback?email=uid&redirect_uri=#{URI::encode('http://example.org')}"
       last_response.status.should == 302
       last_response.headers["Location"].should == "http://example.org"
-    }.to change(Tribute::Models::User, :count).by(1)
+    end
+    it "returns auth" do
+      get "/auth/developer/callback?email=uid"
+      last_response.status.should == 200
+      JSON.parse(last_response.body)["user"]["id"].should_not be_nil
+      JSON.parse(last_response.body)["auth"]["uid"].should == "uid"
+    end
   end
 
   context "unauthenticated" do

@@ -13,12 +13,23 @@ module Tribute
           auth = env['omniauth.auth']
           auth_token = auth[:credentials][:token] || SecureRandom.hex(16)
           if (user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first)
-            user.update_attributes!(token: auth_token) if user.auth_token != auth_token
+            user.update_attributes!(token: auth_token) if user.token != auth_token
           else
             user = Tribute::Models::User.create!(provider: auth[:provider], uid: auth[:uid], token: auth_token)
           end
           warden.set_user user
-          redirect params[:redirect_uri] || request.env['omniauth.params']['redirect_uri']
+          if (redirect_uri = params[:redirect_uri] || request.env['omniauth.params']['redirect_uri'])
+            redirect redirect_uri
+          else
+            {
+              user: {
+                id: user._id,
+                provider: user.provider,
+                uid: user.uid,
+              },
+              auth: auth
+            }
+          end
         end
       end
 
