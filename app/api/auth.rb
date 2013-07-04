@@ -1,3 +1,4 @@
+# Mostly copied from authorization in Travis CI
 module Tribute
   module Api
     class Auth < Grape::API
@@ -10,12 +11,24 @@ module Tribute
         desc "Authentication callback."
         send method, "/auth/:provider/callback" do
           auth = env['omniauth.auth']
-          user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first_or_create!
+          auth_token = auth[:credentials][:token] || SecureRandom.hex(16)
+          if (user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first)
+            user.update_attributes!(token: auth_token) if user.auth_token != auth_token
+          else
+            user = Tribute::Models::User.create!(provider: auth[:provider], uid: auth[:uid], token: auth_token)
+          end
           warden.set_user user
           redirect params[:redirect_uri] || request.env['omniauth.params']['redirect_uri']
         end
       end
 
+      # Endpoint for making sure user authorized Tribute to access GitHub.
+      # There are no restrictions on where to redirect to after handshake.
+      # However, no information whatsoever is being sent with the redirect.
+      #
+      # Parameters:
+      #
+      # * **redirect_uri**: URI to redirect to after handshake.
       get "/auth/:provider/handshake" do
         if ! warden.authenticated?
           redirect "/auth/#{params[:provider]}?redirect_uri=#{params[:redirect_uri]}"

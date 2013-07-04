@@ -9,17 +9,10 @@ module Tribute
       field :token, type: String
 
       index({ provider: 1, uid: 1 }, { unique: true })
+      index({ token: 1 })
 
       validates_presence_of :uid, :provider
       validates_uniqueness_of :uid, scope: :provider
-
-      before_create :create_token
-
-      private
-
-        def create_token
-          self.token = SecureRandom.hex(24)
-        end
 
     end
   end

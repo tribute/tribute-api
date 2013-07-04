@@ -21,7 +21,7 @@ module Tribute
 
     mount Tribute::Api::Status
     mount Tribute::Api::Auth
-    mount Tribute::Api::User
+    mount Tribute::Api::Users
 
     add_swagger_documentation api_version: "v1"
   end

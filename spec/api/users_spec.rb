@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tribute::Api::User do
+describe Tribute::Api::Users do
   include Rack::Test::Methods
 
   def app

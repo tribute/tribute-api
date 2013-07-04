@@ -1,6 +1,6 @@
 module Tribute
   module Api
-    class User < Grape::API
+    class Users < Grape::API
       format :json
 
       namespace :users do
