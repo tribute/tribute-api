@@ -49,7 +49,7 @@ describe Tribute::App do
       get "/auth/developer/handshake?redirect_uri=#{URI::encode('http://example.org')}"
       last_response.status.should == 200
       last_response.headers["Content-type"].should == "text/html"
-      last_response.body.should include "name='token' value='#{user.token}'"
+      last_response.body.should include "name='authToken' value='#{user.token}'"
     end
     it "get /auth/:provider/post_message/iframe returns iframe" do
       get "/auth/developer/post_message/iframe?redirect_uri=#{URI::encode('http://example.org')}"
