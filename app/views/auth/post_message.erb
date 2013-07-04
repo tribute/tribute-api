@@ -15,7 +15,7 @@ function sendPayload(win) {
     'user': '<%= user.id %>',
     'token': '<%= user.token %>'
   };
-  uberParent(win).postMessage(payload, 'http://localhost:9293/');
+  uberParent(win).postMessage(payload, '<%= redirect_uri %>');
 }
 
 if(window.parent == window) {

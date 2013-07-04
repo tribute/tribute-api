@@ -12,7 +12,7 @@ module Tribute
           auth = env['omniauth.auth']
           user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first_or_create!
           warden.set_user user
-          redirect request.env['omniauth.params']['redirect_uri']
+          redirect params[:redirect_uri] || request.env['omniauth.params']['redirect_uri']
         end
       end
 
@@ -33,7 +33,7 @@ module Tribute
           redirect "/auth/#{params[:provider]}?redirect_uri=#{params[:redirect_uri]}"
         else
           content_type "text/html"
-          erb "auth/post_message.erb", user: current_user
+          erb "auth/post_message.erb", { user: current_user, redirect_uri: params[:redirect_uri] }
         end
       end
 

@@ -26,4 +26,5 @@ group :test do
   gem "fabrication", "~> 2.7.2"
   gem "faker"
   gem "shoulda-matchers"
+  gem "autotest"
 end
