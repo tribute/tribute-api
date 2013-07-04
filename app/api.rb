@@ -8,6 +8,8 @@ module Tribute
     helpers Tribute::Helpers::Auth
     helpers Tribute::Helpers::Erb
 
+    use Tribute::Api::AuthMiddleware
+
     desc "Hypermedia API root."
     get do
       {

@@ -10,7 +10,7 @@ module Tribute
         desc "Authentication callback."
         send method, "/auth/:provider/callback" do
           auth = env['omniauth.auth']
-          user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize
+          user = Tribute::Models::User.where(provider: auth[:provider], uid: auth[:uid]).first_or_create!
           warden.set_user user
           redirect request.env['omniauth.params']['redirect_uri']
         end

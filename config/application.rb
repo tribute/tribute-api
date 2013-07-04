@@ -12,7 +12,7 @@ require 'boot'
 
 Bundler.require :default, ENV['RACK_ENV']
 
-[ 'app/helpers', 'app/models', 'app/api' ].each do |path|
+[ 'app/helpers', 'app/middleware', 'app/models', 'app/api' ].each do |path|
   Dir[File.expand_path("../../#{path}/*.rb", __FILE__)].each do |f|
     require f
   end

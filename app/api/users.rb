@@ -6,7 +6,7 @@ module Tribute
       namespace :users do
 
         desc "Retrieve a user by id."
-        get "/(:user_id)" do
+        get "/:user_id" do
           authenticated_user
           if ! params[:user_id] || (params[:user_id] == 'current')
             user = current_user
